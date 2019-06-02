@@ -1,0 +1,13 @@
+FLNAME=$1
+EXNAME=`basename $1 .f90`
+
+MODDIR="trunk/module"
+
+#path to BFGS library
+BFGSLIB=""
+
+#path to MPI header and module
+MPIDIR="/usr/local/lib"
+
+OPTION="-ffree-form -cpp -O3  -fPIC -fno-second-underscore -m64 -Wl,--no-as-needed "
+mpif90 $OPTION  -I$MODDIR -I$MPIDIR  -I${MKLROOT}/include -L${MKLROOT}/lib/intel64 -lmkl_gf_lp64 -lmkl_core -lmkl_gnu_thread -lgomp -lpthread -lm -ldl  -o $EXNAME $FLNAME $MODDIR/*.o  $BFGSLIB/*.o 
