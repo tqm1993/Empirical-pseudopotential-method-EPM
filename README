@@ -1,0 +1,52 @@
+This project aims to calculate the electronic band structure of semiconductor material with zinc-blende structure, using an Empirical Pseudotential 
+Method (EPM). Informations from the simulated band structure (Band energies and wavefunctions) are then used to calculate the optical absorption of the
+material. 
+
+It is written, maintained on Fortran 90 and parallelized using MPI library. 
+
+This project contains 4 folder:
+
+	-trunk: This folder contains source codes
+
+	-driver: This folder contains main programs to parametrize the pseudopotential, calculate the band structure and the optical absorption of material.
+
+	-example_Vloc: This folder contains example of pseudopotential used in the calculation
+
+	-post-processing: This folder contains post-processing Python script to plot the output results.
+	
+
+*****************************************************************************************************************
+To compile the source codes, first you need to verify (and modify if necessary) the path directories in Makefile:
+
+	-SRCDIR: The source code folder (default to trunk)
+	-MODDIR: The folder containing all compiled (.o) and module files (.mod) (default to trunk/module)
+	-MPIDIR: The folder containing MPI library module and header (default to /usr/local/lib)
+	
+You can also adapt the compiler (FC) and the Fortran compiling flags (FFLAGS). I use BLAS and LAPACK libraries from Intel MKL to compile the codes,
+you MUST change the library link if you use other BLAS and LAPACK libraries. 
+
+To compile all the sources codes, type:
+	make all
+
+To clear all compiled and module files, type:
+	make clear
+*****************************************************************************************************************
+	
+	
+*****************************************************************************************************************
+To compile and execute the programs, first you need to verify (and modify if necessary) the path directories in f_execmpi:
+
+	-MODDIR, MPIDIR: see above
+	-BFGSLIB: point to the BFGS library folder. BFGS library MUST be the version 3.0 downloaded from http://users.iems.northwestern.edu/~nocedal/lbfgsb.html
+	You need to compile the BFGS source codes before using it for this program.
+	
+Example of compiling and executing program:
+	
+	#Compiling the program to calculate the optical absorption:
+		./f_execmpi driver/driver_abs.f90
+	
+	#Executing the program:
+		mpirun -n 64 ./driver_abs
+	
+*****************************************************************************************************************
+ 
