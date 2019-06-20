@@ -22,8 +22,7 @@ To compile the source codes, first you need to verify (and modify if necessary) 
 	-MODDIR: The folder containing all compiled (.o) and module files (.mod) (default to trunk/module)
 	-MPIDIR: The folder containing MPI library module and header (default to /usr/local/lib)
 	
-You can also adapt the compiler (FC) and the Fortran compiling flags (FFLAGS). I use BLAS and LAPACK libraries from Intel MKL to compile the codes,
-you MUST change the library link if you use other BLAS and LAPACK libraries. 
+You can also adapt the compiler (FC) and the Fortran compiling flags (FFLAGS). I use BLAS and LAPACK libraries from Intel MKL to compile the codes, you MUST change the library link if you use other BLAS and LAPACK libraries. 
 
 To compile all the sources codes, type:
 	make all
